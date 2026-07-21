@@ -72,7 +72,8 @@ function renderKeyboard() {
   if(state.accents&&!state.numbers) chars=chars.flatMap(char=>[char,...(accents[char.toLowerCase()]||[])]); chars.forEach(char=>keyboard.append(makeKey(char,()=>insertText(char))));
   keyboard.append(makeKey("Espace",()=>insertText(" "),true),makeKey("⌫",()=>{const f=activeField(),s=f.selectionStart;if(s>0){f.value=f.value.slice(0,s-1)+f.value.slice(f.selectionEnd);f.selectionStart=f.selectionEnd=s-1;f.dispatchEvent(new Event("input"))}},true));
 }
-function showKeyboard(){ $("#keyboardDock").classList.remove("hidden"); } function hideKeyboard(){ $("#keyboardDock").classList.add("hidden"); }
+function showKeyboard(){ $("#keyboardDock").classList.remove("hidden"); $("#showKeyboardBtn").classList.add("keyboard-open"); }
+function hideKeyboard(){ $("#keyboardDock").classList.add("hidden"); $("#showKeyboardBtn").classList.remove("keyboard-open"); }
 
 document.addEventListener("focusin",e=>{if(editable(e.target))state.activeField=e.target});
 document.querySelectorAll(".path-item").forEach(button=>button.onclick=()=>{document.querySelectorAll(".path-item").forEach(item=>item.classList.remove("active"));button.classList.add("active");state.category=button.dataset.category;state.question=1;newQuestion()});

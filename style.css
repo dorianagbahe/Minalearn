@@ -144,6 +144,8 @@ main { overflow: hidden; }
 
 .keyboard-dock { width: min(900px, calc(100vw - 24px)); max-height: calc(100vh - 98px); overflow: auto; padding: 12px; position: fixed; top: 82px; left: 50%; z-index: 19; transform: translateX(-50%); border: 1px solid var(--line); border-radius: 18px; background: var(--card); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); }
 .keyboard-dock.hidden { display: none; }
+#showKeyboardBtn { position: fixed; top: 86px; right: 24px; z-index: 18; box-shadow: var(--shadow); }
+#showKeyboardBtn.keyboard-open { display: none; }
 .keyboard-bar { padding: 5px 7px 12px; display: flex; align-items: center; justify-content: space-between; font-weight: 700; }
 .keyboard-bar button { border: 0; background: transparent; color: var(--muted); font-size: 25px; }
 .clavier { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; }
@@ -188,4 +190,5 @@ main { overflow: hidden; }
   .closing-message { gap: 16px; }
   .clavier { grid-template-columns: repeat(5, 1fr); }
   .keyboard-dock { top: 78px; max-height: calc(100vh - 90px); }
+  #showKeyboardBtn { top: 82px; right: 12px; }
 }
