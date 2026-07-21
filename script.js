@@ -73,7 +73,6 @@ function renderKeyboard() {
   keyboard.append(makeKey("Espace",()=>insertText(" "),true),makeKey("⌫",()=>{const f=activeField(),s=f.selectionStart;if(s>0){f.value=f.value.slice(0,s-1)+f.value.slice(f.selectionEnd);f.selectionStart=f.selectionEnd=s-1;f.dispatchEvent(new Event("input"))}},true));
 }
 function showKeyboard(){ $("#keyboardDock").classList.remove("hidden"); } function hideKeyboard(){ $("#keyboardDock").classList.add("hidden"); }
-function setupDrag(){ const dock=$("#keyboardDock"),bar=$("#keyboardBar"); let drag=null; bar.addEventListener("pointerdown",e=>{if(e.target.tagName==="BUTTON")return;const r=dock.getBoundingClientRect();drag={x:e.clientX-r.left,y:e.clientY-r.top};bar.setPointerCapture(e.pointerId)});bar.addEventListener("pointermove",e=>{if(!drag)return;dock.style.left=`${Math.max(0,Math.min(innerWidth-dock.offsetWidth,e.clientX-drag.x))}px`;dock.style.top=`${Math.max(0,Math.min(innerHeight-dock.offsetHeight,e.clientY-drag.y))}px`;dock.style.right="auto";dock.style.bottom="auto"});bar.addEventListener("pointerup",()=>drag=null); }
 
 document.addEventListener("focusin",e=>{if(editable(e.target))state.activeField=e.target});
 document.querySelectorAll(".path-item").forEach(button=>button.onclick=()=>{document.querySelectorAll(".path-item").forEach(item=>item.classList.remove("active"));button.classList.add("active");state.category=button.dataset.category;state.question=1;newQuestion()});
@@ -85,4 +84,4 @@ $("#copyTextBtn").onclick=async()=>{try{await navigator.clipboard.writeText($("#
 $("#texte").addEventListener("input",e=>{$("#charCount").textContent=`${e.target.value.length} caractère${e.target.value.length>1?"s":""}`});
 $("#themeBtn").onclick=()=>{document.body.classList.toggle("dark");const dark=document.body.classList.contains("dark");storage.set("minalearn_theme",dark?"dark":"light");$("#themeBtn").textContent=dark?"☀":"☾"};
 if(storage.get("minalearn_theme","light")==="dark"){document.body.classList.add("dark");$("#themeBtn").textContent="☀"}
-renderKeyboard(); setupDrag(); renderSuggestions(); renderFavorites(); updateDashboard(); newQuestion();
+renderKeyboard(); renderSuggestions(); renderFavorites(); updateDashboard(); newQuestion();
