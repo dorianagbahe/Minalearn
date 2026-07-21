@@ -10,11 +10,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ui-overrides.css">
   <link rel="icon" href="togodrapeau.png">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="#accueil" aria-label="Mina Learn, accueil"><span class="brand-mark">M</span><span>Mina <b>Learn</b></span></a>
+    <a class="brand" href="#accueil" aria-label="Mina Learn, accueil"><img class="brand-logo" src="togodrapeau.png" alt="Drapeau du Togo"><span>Mina <b>Learn</b></span></a>
     <nav aria-label="Navigation principale">
       <a href="#apprendre">Apprendre</a><a href="#dictionnaire">Dictionnaire</a><a href="#ecrire">Écrire</a>
     </nav>
@@ -33,7 +34,7 @@
         <div class="daily-top"><span class="daily-icon">✦</span><span>Objectif du jour</span><b id="goalPercent">0%</b></div>
         <div class="progress-track"><span id="goalBar"></span></div>
         <p id="goalText">0 exercice sur 5 terminé</p>
-        <div class="word-card"><small>EXPRESSION DU JOUR</small><strong>Woezɔ̃</strong><span>Bienvenue</span><button class="listen-btn" type="button" data-speak="Woezɔ̃">▶ Écouter</button></div>
+        <div class="word-card"><small>EXPRESSION DU JOUR</small><strong>Woezɔ̃</strong><span>Bienvenue</span></div>
       </div>
     </section>
 
@@ -86,12 +87,12 @@
       <div class="section-heading"><div><span class="eyebrow">Pratique libre</span><h2>Écrivez en mina</h2><p>Utilisez le clavier adapté pour vous entraîner sans contrainte.</p></div><button class="ghost-btn" id="showKeyboardBtn" type="button">⌨ Afficher le clavier</button></div>
       <div class="writing-card">
         <label class="sr-only" for="texte">Zone d’écriture en mina</label><textarea id="texte" placeholder="Miawoe! Écrivez votre texte ici…"></textarea>
-        <div class="writing-tools"><span id="charCount">0 caractère</span><div><button id="clearTextBtn" type="button">Effacer</button><button id="copyTextBtn" type="button">Copier</button><button id="speakTextBtn" type="button">▶ Écouter</button></div></div>
+        <div class="writing-tools"><span id="charCount">0 caractère</span><div><button id="clearTextBtn" type="button">Effacer</button><button id="copyTextBtn" type="button">Copier</button></div></div>
       </div>
     </section>
   </main>
 
-  <footer><a class="brand" href="#accueil"><span class="brand-mark">M</span><span>Mina <b>Learn</b></span></a><p>Apprendre, pratiquer, transmettre.</p><small>Conçu avec soin pour valoriser la langue mina.</small></footer>
+  <footer><p>Apprendre, pratiquer, transmettre.</p><small>Conçu avec soin pour valoriser la langue mina.</small></footer>
 
   <div id="keyboardDock" class="keyboard-dock hidden" role="dialog" aria-label="Clavier mina">
     <div id="keyboardBar" class="keyboard-bar"><span>⌨ Clavier mina</span><button id="hideKeyboardBtn" type="button" aria-label="Masquer le clavier">×</button></div><div id="clavier" class="clavier"></div>

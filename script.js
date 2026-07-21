@@ -13,7 +13,6 @@ let toastTimer;
 
 function normalize(value="") { return value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim(); }
 function toast(message) { const el=$("#toast"); el.textContent=message; el.classList.add("show"); clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.classList.remove("show"),2200); }
-function speak(text) { if (!("speechSynthesis" in window) || !text) return toast("La lecture audio n’est pas disponible."); const utterance=new SpeechSynthesisUtterance(text); utterance.lang="fr-FR"; utterance.rate=.82; speechSynthesis.cancel(); speechSynthesis.speak(utterance); }
 function favorites() { return storage.get("minalearn_favoris",[]); }
 function saveFavorites(items) { storage.set("minalearn_favoris",items); renderFavorites(); updateDashboard(); }
 
@@ -52,14 +51,14 @@ function translate(value=$("#recherche").value) {
   renderSuggestions(value); const key=findEntry(value); const result=$("#resultat");
   if(!value.trim()){ result.innerHTML='<div class="empty-state"><span>文</span><p>Commencez à écrire pour découvrir une traduction.</p></div>'; return; }
   if(!key){ result.innerHTML='<div class="empty-state"><p>Aucun résultat exact. Essayez une suggestion ci-dessus.</p></div>'; return; }
-  const saved=favorites().some(item=>item.fr===key); result.innerHTML=`<div class="result-content"><div class="translation-main"><small>Traduction en mina</small><h3>${dictionnaire[key]}</h3><p>${key}</p></div><button class="round-action" data-result-speak aria-label="Écouter">▶</button><button class="round-action ${saved?"saved":""}" data-result-save aria-label="Ajouter aux favoris">★</button></div>`;
-  result.querySelector("[data-result-speak]").onclick=()=>speak(dictionnaire[key]); result.querySelector("[data-result-save]").onclick=()=>toggleFavorite(key);
+  const saved=favorites().some(item=>item.fr===key); result.innerHTML=`<div class="result-content"><div class="translation-main"><small>Traduction en mina</small><h3>${dictionnaire[key]}</h3><p>${key}</p></div><button class="round-action ${saved?"saved":""}" data-result-save aria-label="Ajouter aux favoris">★</button></div>`;
+  result.querySelector("[data-result-save]").onclick=()=>toggleFavorite(key);
 }
 function toggleFavorite(key) { const items=favorites(), index=items.findIndex(item=>item.fr===key); if(index>=0){items.splice(index,1);toast("Mot retiré des favoris.")}else{items.unshift({fr:key,mina:dictionnaire[key]});toast("Mot ajouté aux favoris.")} saveFavorites(items); translate(key); }
 function renderFavorites() {
   const items=favorites(), list=$("#favoris"); list.innerHTML=""; $("#favoriteBadge").textContent=items.length;
   if(!items.length){ list.innerHTML='<li class="no-favorite">Vos mots enregistrés apparaîtront ici.</li>'; return; }
-  items.forEach(item=>{ const li=document.createElement("li"); li.innerHTML=`<p><b>${item.mina}</b><small>${item.fr}</small></p><button aria-label="Écouter">▶</button><button aria-label="Retirer">×</button>`; const buttons=li.querySelectorAll("button"); buttons[0].onclick=()=>speak(item.mina); buttons[1].onclick=()=>toggleFavorite(item.fr); list.appendChild(li); });
+  items.forEach(item=>{ const li=document.createElement("li"); li.innerHTML=`<p><b>${item.mina}</b><small>${item.fr}</small></p><button aria-label="Retirer">×</button>`; li.querySelector("button").onclick=()=>toggleFavorite(item.fr); list.appendChild(li); });
 }
 
 function editable(el) { return el && ["INPUT","TEXTAREA"].includes(el.tagName) && !el.disabled; }
@@ -77,13 +76,12 @@ function showKeyboard(){ $("#keyboardDock").classList.remove("hidden"); } functi
 function setupDrag(){ const dock=$("#keyboardDock"),bar=$("#keyboardBar"); let drag=null; bar.addEventListener("pointerdown",e=>{if(e.target.tagName==="BUTTON")return;const r=dock.getBoundingClientRect();drag={x:e.clientX-r.left,y:e.clientY-r.top};bar.setPointerCapture(e.pointerId)});bar.addEventListener("pointermove",e=>{if(!drag)return;dock.style.left=`${Math.max(0,Math.min(innerWidth-dock.offsetWidth,e.clientX-drag.x))}px`;dock.style.top=`${Math.max(0,Math.min(innerHeight-dock.offsetHeight,e.clientY-drag.y))}px`;dock.style.right="auto";dock.style.bottom="auto"});bar.addEventListener("pointerup",()=>drag=null); }
 
 document.addEventListener("focusin",e=>{if(editable(e.target))state.activeField=e.target});
-document.querySelectorAll("[data-speak]").forEach(button=>button.onclick=()=>speak(button.dataset.speak));
 document.querySelectorAll(".path-item").forEach(button=>button.onclick=()=>{document.querySelectorAll(".path-item").forEach(item=>item.classList.remove("active"));button.classList.add("active");state.category=button.dataset.category;state.question=1;newQuestion()});
 $("#checkBtn").onclick=checkAnswer; $("#hintBtn").onclick=showHint; $("#reponse").addEventListener("keydown",e=>{if(e.key==="Enter")checkAnswer()});
 $("#resetScoreBtn").onclick=()=>{score={bon:0,total:0};storage.set("minalearn_score",score);state.question=1;updateDashboard();newQuestion();toast("Progression réinitialisée.")};
 $("#recherche").addEventListener("input",e=>translate(e.target.value)); document.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("#recherche").focus();location.hash="dictionnaire"}});
 $("#showKeyboardBtn").onclick=showKeyboard; $("#hideKeyboardBtn").onclick=hideKeyboard; $("#clearTextBtn").onclick=()=>{$("#texte").value="";$("#texte").dispatchEvent(new Event("input"))};
-$("#copyTextBtn").onclick=async()=>{try{await navigator.clipboard.writeText($("#texte").value);toast("Texte copié.")}catch{toast("Copie impossible.")}}; $("#speakTextBtn").onclick=()=>speak($("#texte").value.trim());
+$("#copyTextBtn").onclick=async()=>{try{await navigator.clipboard.writeText($("#texte").value);toast("Texte copié.")}catch{toast("Copie impossible.")}};
 $("#texte").addEventListener("input",e=>{$("#charCount").textContent=`${e.target.value.length} caractère${e.target.value.length>1?"s":""}`});
 $("#themeBtn").onclick=()=>{document.body.classList.toggle("dark");const dark=document.body.classList.contains("dark");storage.set("minalearn_theme",dark?"dark":"light");$("#themeBtn").textContent=dark?"☀":"☾"};
 if(storage.get("minalearn_theme","light")==="dark"){document.body.classList.add("dark");$("#themeBtn").textContent="☀"}
