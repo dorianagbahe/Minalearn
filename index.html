@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Minalearn, une application interactive pour écrire et apprendre la langue mina.">
+  <title>Minalearn - Apprendre le mina</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="togodrapeau.png">
+</head>
+<body>
+  <div class="top-flag" aria-hidden="true"></div>
+  <div class="bg-shape bg-shape-1" aria-hidden="true"></div>
+  <div class="bg-shape bg-shape-2" aria-hidden="true"></div>
+
+  <main class="app">
+    <header class="hero">
+      <h1>Minalearn</h1>
+      <p>Clavier, dictionnaire et entraînement pour parler le mina (Togo).</p>
+    </header>
+
+    <section class="panel">
+      <h2>Zone d'écriture</h2>
+      <textarea id="texte" placeholder="Écris ici en mina..."></textarea>
+
+      <h3>Clavier mina</h3>
+      <p class="hint">Utilise le bouton "Clavier" pour afficher/masquer et déplacer le clavier où tu veux.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Dictionnaire français - mina</h2>
+      <div class="search-row">
+        <input id="recherche" placeholder="Exemple : eau, maison, banane..." oninput="traduire()">
+        <button type="button" onclick="parlerResultat()">Prononcer</button>
+      </div>
+      <div id="resultat" class="resultat"></div>
+      <button type="button" class="secondary" onclick="ajouterFavoriDepuisRecherche()">Ajouter aux favoris</button>
+    </section>
+
+    <section class="panel split">
+      <div>
+        <h2>Apprendre le mina</h2>
+        <p id="question"></p>
+        <input id="reponse" placeholder="Écris la réponse en mina">
+        <div class="actions quiz-actions">
+          <button type="button" onclick="verifier()">Vérifier</button>
+          <button type="button" onclick="nouvelleQuestion()">Nouvelle question</button>
+        </div>
+        <div id="feedback" class="resultat"></div>
+        <p id="score" class="score"></p>
+      </div>
+
+      <div>
+        <h2>Mes favoris</h2>
+        <ul id="favoris" class="list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <button id="openKeyboardBtn" class="open-keyboard-btn" type="button">Clavier</button>
+
+  <div id="keyboardDock" class="keyboard-dock" role="dialog" aria-label="Clavier Mina">
+    <div id="keyboardBar" class="keyboard-bar">
+      <span>Clavier Mina</span>
+      <button id="hideKeyboardBtn" type="button">Masquer</button>
+    </div>
+    <div id="clavier" class="clavier"></div>
+  </div>
+
+  <footer class="footer-flag">
+    <p>Minalearn - Apprendre le mina pas à pas</p>
+  </footer>
+
+  <script src="dictionnaire.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Fichiers créés par le système et les éditeurs
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Archives et fichiers temporaires
+*.zip
+*.tmp
+*.log
