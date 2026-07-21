@@ -3,100 +3,325 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Mina Learn, la plateforme simple et interactive pour apprendre le mina pas à pas.">
+  <meta
+    name="description"
+    content="Mina Learn, la plateforme simple et interactive pour apprendre le mina pas à pas."
+  >
   <meta name="theme-color" content="#12382b">
+
   <title>Mina Learn — Apprendre le mina</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+  >
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="togodrapeau.png">
 </head>
+
 <body>
   <header class="site-header">
-    <a class="brand" href="#accueil" aria-label="Mina Learn, accueil"><img class="brand-logo" src="togodrapeau.png" alt="Drapeau du Togo"><span>Mina <b>Learn</b></span></a>
+    <a class="brand" href="#accueil" aria-label="Mina Learn, accueil">
+      <img class="brand-logo" src="togodrapeau.png" alt="Drapeau du Togo">
+      <span>Mina <b>Learn</b></span>
+    </a>
+
     <nav aria-label="Navigation principale">
-      <a href="#apprendre">Apprendre</a><a href="#dictionnaire">Dictionnaire</a><a href="#ecrire">Écrire</a>
+      <a href="#apprendre">Apprendre</a>
+      <a href="#dictionnaire">Dictionnaire</a>
+      <a href="#ecrire">Écrire</a>
     </nav>
-    <button class="icon-btn" id="themeBtn" type="button" aria-label="Changer le thème" title="Changer le thème">☾</button>
+
+    <button
+      class="icon-btn"
+      id="themeBtn"
+      type="button"
+      aria-label="Changer le thème"
+      title="Changer le thème"
+    >
+      ☾
+    </button>
   </header>
 
   <main>
+    <!-- Accueil -->
     <section class="hero" id="accueil">
       <div class="hero-copy">
         <span class="eyebrow">La langue mina, à votre rythme</span>
         <h1>Parlez mina avec <em>confiance.</em></h1>
-        <p>Des leçons courtes, du vocabulaire utile et des exercices interactifs pour progresser un peu chaque jour.</p>
-        <div class="hero-actions"><a class="button" href="#apprendre">Commencer la leçon <span>→</span></a><a class="text-link" href="#dictionnaire">Explorer le dictionnaire</a></div>
+        <p>
+          Des leçons courtes, du vocabulaire utile et des exercices interactifs
+          pour progresser un peu chaque jour.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button" href="#apprendre">
+            Commencer la leçon <span>→</span>
+          </a>
+          <a class="text-link" href="#dictionnaire">Explorer le dictionnaire</a>
+        </div>
       </div>
+
       <div class="daily-card">
-        <div class="daily-top"><span class="daily-icon">✦</span><span>Objectif du jour</span><b id="goalPercent">0%</b></div>
-        <div class="progress-track"><span id="goalBar"></span></div>
+        <div class="daily-top">
+          <span class="daily-icon">✦</span>
+          <span>Objectif du jour</span>
+          <b id="goalPercent">0%</b>
+        </div>
+
+        <div class="progress-track">
+          <span id="goalBar"></span>
+        </div>
+
         <p id="goalText">0 exercice sur 5 terminé</p>
-        <div class="word-card"><small>EXPRESSION DU JOUR</small><strong>Woezɔ̃</strong><span>Bienvenue</span></div>
+
+        <div class="word-card">
+          <small>EXPRESSION DU JOUR</small>
+          <strong>Woezɔ̃</strong>
+          <span>Bienvenue</span>
+        </div>
       </div>
     </section>
 
+    <!-- Statistiques -->
     <section class="stats" aria-label="Votre progression">
-      <div><span class="stat-icon flame">♨</span><p><strong id="streakValue">0</strong><small>jours de série</small></p></div>
-      <div><span class="stat-icon">✓</span><p><strong id="learnedValue">0</strong><small>bonnes réponses</small></p></div>
-      <div><span class="stat-icon">◎</span><p><strong id="accuracyValue">0%</strong><small>de réussite</small></p></div>
-      <div><span class="stat-icon">★</span><p><strong id="favoriteValue">0</strong><small>mots favoris</small></p></div>
+      <div>
+        <span class="stat-icon flame">♨</span>
+        <p>
+          <strong id="streakValue">0</strong>
+          <small>jours de série</small>
+        </p>
+      </div>
+
+      <div>
+        <span class="stat-icon">✓</span>
+        <p>
+          <strong id="learnedValue">0</strong>
+          <small>bonnes réponses</small>
+        </p>
+      </div>
+
+      <div>
+        <span class="stat-icon">◎</span>
+        <p>
+          <strong id="accuracyValue">0%</strong>
+          <small>de réussite</small>
+        </p>
+      </div>
+
+      <div>
+        <span class="stat-icon">★</span>
+        <p>
+          <strong id="favoriteValue">0</strong>
+          <small>mots favoris</small>
+        </p>
+      </div>
     </section>
 
+    <!-- Apprentissage -->
     <section class="section" id="apprendre">
-      <div class="section-heading"><div><span class="eyebrow">Entraînement</span><h2>Votre leçon du jour</h2></div><button class="ghost-btn" id="resetScoreBtn" type="button">Réinitialiser</button></div>
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Entraînement</span>
+          <h2>Votre leçon du jour</h2>
+        </div>
+        <button class="ghost-btn" id="resetScoreBtn" type="button">
+          Réinitialiser
+        </button>
+      </div>
+
       <div class="learning-grid">
         <article class="lesson-card">
-          <div class="lesson-header"><div><span id="questionCount">Question 1</span><small id="quizProgressText">Nouvelle série</small></div><div class="mini-progress"><span id="quizProgressBar"></span></div></div>
+          <div class="lesson-header">
+            <div>
+              <span id="questionCount">Question 1</span>
+              <small id="quizProgressText">Nouvelle série</small>
+            </div>
+            <div class="mini-progress">
+              <span id="quizProgressBar"></span>
+            </div>
+          </div>
+
           <div class="quiz-body">
             <span class="quiz-label">TRADUISEZ EN MINA</span>
             <h3 id="question">Bonjour</h3>
+
             <label class="sr-only" for="reponse">Votre réponse en mina</label>
-            <input id="reponse" autocomplete="off" placeholder="Écrivez votre réponse…">
-            <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
-            <div class="quiz-actions"><button class="ghost-btn" id="hintBtn" type="button">💡 Un indice</button><button class="button" id="checkBtn" type="button">Vérifier</button></div>
+            <input
+              id="reponse"
+              autocomplete="off"
+              placeholder="Écrivez votre réponse…"
+            >
+
+            <div
+              id="feedback"
+              class="feedback"
+              role="status"
+              aria-live="polite"
+            ></div>
+
+            <div class="quiz-actions">
+              <button class="ghost-btn" id="hintBtn" type="button">
+                💡 Un indice
+              </button>
+              <button class="button" id="checkBtn" type="button">
+                Vérifier
+              </button>
+            </div>
           </div>
         </article>
+
         <aside class="path-card">
-          <span class="eyebrow">Parcours débutant</span><h3>Les essentiels</h3><p>Maîtrisez les mots dont vous aurez besoin au quotidien.</p>
+          <span class="eyebrow">Parcours débutant</span>
+          <h3>Les essentiels</h3>
+          <p>Maîtrisez les mots dont vous aurez besoin au quotidien.</p>
+
           <div class="path-list">
-            <button class="path-item active" data-category="bases"><span>01</span><p><b>Premiers mots</b><small>Salutations et politesse</small></p><i>→</i></button>
-            <button class="path-item" data-category="quotidien"><span>02</span><p><b>Au quotidien</b><small>Maison, repas et objets</small></p><i>→</i></button>
-            <button class="path-item" data-category="nombres"><span>03</span><p><b>Compter</b><small>Les nombres de 1 à 10</small></p><i>→</i></button>
+            <button class="path-item active" data-category="bases">
+              <span>01</span>
+              <p>
+                <b>Premiers mots</b>
+                <small>Salutations et politesse</small>
+              </p>
+              <i>→</i>
+            </button>
+
+            <button class="path-item" data-category="quotidien">
+              <span>02</span>
+              <p>
+                <b>Au quotidien</b>
+                <small>Maison, repas et objets</small>
+              </p>
+              <i>→</i>
+            </button>
+
+            <button class="path-item" data-category="nombres">
+              <span>03</span>
+              <p>
+                <b>Compter</b>
+                <small>Les nombres de 1 à 10</small>
+              </p>
+              <i>→</i>
+            </button>
           </div>
         </aside>
       </div>
     </section>
 
+    <!-- Dictionnaire -->
     <section class="section dictionary-section" id="dictionnaire">
-      <div class="section-heading"><div><span class="eyebrow">Vocabulaire</span><h2>Dictionnaire français — mina</h2><p>Recherchez un mot, écoutez-le et gardez-le pour plus tard.</p></div></div>
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Vocabulaire</span>
+          <h2>Dictionnaire français — mina</h2>
+          <p>Recherchez un mot et gardez-le pour plus tard.</p>
+        </div>
+      </div>
+
       <div class="dictionary-grid">
         <div class="search-card">
           <label for="recherche">Rechercher un mot en français</label>
-          <div class="search-box"><span>⌕</span><input id="recherche" autocomplete="off" placeholder="Ex. bonjour, maison, eau…"><kbd>⌘ K</kbd></div>
-          <div id="suggestions" class="suggestions" aria-label="Suggestions"></div>
-          <div id="resultat" class="translation-result" aria-live="polite"><div class="empty-state"><span>文</span><p>Commencez à écrire pour découvrir une traduction.</p></div></div>
+
+          <div class="search-box">
+            <span>⌕</span>
+            <input
+              id="recherche"
+              autocomplete="off"
+              placeholder="Ex. bonjour, maison, eau…"
+            >
+            <kbd>⌘ K</kbd>
+          </div>
+
+          <div
+            id="suggestions"
+            class="suggestions"
+            aria-label="Suggestions"
+          ></div>
+
+          <div
+            id="resultat"
+            class="translation-result"
+            aria-live="polite"
+          >
+            <div class="empty-state">
+              <span>文</span>
+              <p>Commencez à écrire pour découvrir une traduction.</p>
+            </div>
+          </div>
         </div>
-        <aside class="favorites-card"><div class="favorites-title"><h3>Mes favoris</h3><span id="favoriteBadge">0</span></div><ul id="favoris" class="favorite-list"></ul></aside>
+
+        <aside class="favorites-card">
+          <div class="favorites-title">
+            <h3>Mes favoris</h3>
+            <span id="favoriteBadge">0</span>
+          </div>
+          <ul id="favoris" class="favorite-list"></ul>
+        </aside>
       </div>
     </section>
 
+    <!-- Écriture -->
     <section class="section" id="ecrire">
-      <div class="section-heading"><div><span class="eyebrow">Pratique libre</span><h2>Écrivez en mina</h2><p>Utilisez le clavier adapté pour vous entraîner sans contrainte.</p></div><button class="ghost-btn" id="showKeyboardBtn" type="button">⌨ Afficher le clavier mina</button></div>
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Pratique libre</span>
+          <h2>Écrivez en mina</h2>
+          <p>Utilisez le clavier adapté pour vous entraîner sans contrainte.</p>
+        </div>
+        <button class="ghost-btn" id="showKeyboardBtn" type="button">
+          ⌨ Afficher le clavier mina
+        </button>
+      </div>
+
       <div class="writing-card">
-        <label class="sr-only" for="texte">Zone d’écriture en mina</label><textarea id="texte" placeholder="Miawoe! Écrivez votre texte ici…"></textarea>
-        <div class="writing-tools"><span id="charCount">0 caractère</span><div><button id="clearTextBtn" type="button">Effacer</button><button id="copyTextBtn" type="button">Copier</button></div></div>
+        <label class="sr-only" for="texte">Zone d’écriture en mina</label>
+        <textarea
+          id="texte"
+          placeholder="Miawoe ! Écrivez votre texte ici…"
+        ></textarea>
+
+        <div class="writing-tools">
+          <span id="charCount">0 caractère</span>
+          <div>
+            <button id="clearTextBtn" type="button">Effacer</button>
+            <button id="copyTextBtn" type="button">Copier</button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <div class="closing-message"><p>Apprendre, pratiquer, transmettre.</p><small>Conçu avec soin pour valoriser la langue mina.</small></div>
-
-  <div id="keyboardDock" class="keyboard-dock hidden" role="dialog" aria-label="Clavier mina">
-    <div id="keyboardBar" class="keyboard-bar"><span>⌨ Clavier mina</span><button id="hideKeyboardBtn" type="button" aria-label="Masquer le clavier">×</button></div><div id="clavier" class="clavier"></div>
+  <!-- Message de fin -->
+  <div class="closing-message">
+    <p>Apprendre, pratiquer, transmettre.</p>
+    <small>Conçu avec soin pour valoriser la langue mina.</small>
   </div>
+
+  <!-- Clavier mina -->
+  <div
+    id="keyboardDock"
+    class="keyboard-dock hidden"
+    role="dialog"
+    aria-label="Clavier mina"
+  >
+    <div id="keyboardBar" class="keyboard-bar">
+      <span>⌨ Clavier mina</span>
+      <button
+        id="hideKeyboardBtn"
+        type="button"
+        aria-label="Masquer le clavier"
+      >
+        ×
+      </button>
+    </div>
+    <div id="clavier" class="clavier"></div>
+  </div>
+
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="dictionnaire.js"></script><script src="script.js"></script>
+
+  <script src="dictionnaire.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
