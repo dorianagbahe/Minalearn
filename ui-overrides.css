@@ -17,16 +17,24 @@
   grid-column: auto;
 }
 
-footer {
+.closing-message {
+  max-width: 1132px;
+  margin: 0 auto;
+  padding: 24px 0 36px;
+  display: flex;
   justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
 }
 
-footer p {
+.closing-message p {
   margin: 0;
 }
 
 @media (max-width: 560px) {
-  footer {
+  .closing-message {
     display: flex;
+    margin: 0 24px;
+    gap: 16px;
   }
 }
